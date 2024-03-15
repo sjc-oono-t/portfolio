@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+  db:
+    # image: mysql:8.0
+    # platform: linux/x86_64
+    # command: --default-authentication-plugin=mysql_native_password
+    # environment:
+    #   MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    # security_opt:
+    #   - seccomp:unconfined
+    #
+    # dockerhubのイメージを使う場合指定する
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: backend_development
+      POSTGRES_USER: develop
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db:/var/lib/postgresql/data
+    # 外から見たいときに設定する(tableplusなどで接続する場合)
+    # ports:
+    #   - "5432:5432"
+  backend:
+    # 複雑なことをする場合はimage指定ではなく、Dockefileを指定する
+    # backend/Dockerfileが実行される
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    container_name: backend
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./backend:/backend
+      - bundle:/usr/local/bundle
+    command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+  node:
+    image: node:21-alpine
+    container_name: node
+    working_dir: /usr/src/app/frontend/app
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./frontend/app:/usr/src/app/frontend/app
+    command: sh -c "yarn start"
+    ports:
+      - "3001:3000"
+    environment:
+      TZ: Asia/Tokyo
+      NODE_ENV: development
+volumes:
+  db:
+    driver: local
+  bundle:
+    driver: local
+  node:
+    driver: local
