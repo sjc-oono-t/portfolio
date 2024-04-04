@@ -29,6 +29,7 @@ services:
       context: ./backend/
       dockerfile: Dockerfile
     container_name: backend
+    working_dir: /backend
     stdin_open: true
     tty: true
     volumes:
