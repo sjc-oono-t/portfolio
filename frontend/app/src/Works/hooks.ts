@@ -8,6 +8,7 @@ export const useHooks = (): ReturnHooks => {
   const workItems = [
     {
       title: "Work 1",
+      url: "https://www.google.co.jp/",
       description: "Description 1",
       workingProcess: '要件定義/設計/実装/テスト/保守',
       technology: 'React',
