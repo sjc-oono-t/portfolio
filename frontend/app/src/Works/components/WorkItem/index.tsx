@@ -3,7 +3,8 @@ import { GoGear, GoFileCode, GoLinkExternal } from "react-icons/go";
 import { styled } from "styled-components"
 
 const WorkItemBlock = styled.div`
-  border: 1px solid black;
+  border: 1px solid #BEBEBE;
+  border-radius: 12px;
   padding: 16px 24px;
   svg {
     margin-right: 4px;
@@ -11,10 +12,12 @@ const WorkItemBlock = styled.div`
 `;
 
 const WorkItemHeader = styled.div`
+  margin-bottom: 8px;
 `;
 
 const Title = styled.span`
   margin-right: 24px;
+  font-size: 24px;
 `;
 
 const WorkingProcess = styled.span`
@@ -23,11 +26,12 @@ const WorkingProcess = styled.span`
 
 interface Props {
   readonly workItem: WorkItemData;
+  readonly className?: string;
 }
 
 export const WorkItem: React.FC<Props> = (props) => {
   return (
-    <WorkItemBlock>
+    <WorkItemBlock className={props.className}>
       <WorkItemHeader>
         <Title>
           {props.workItem.title}
@@ -43,11 +47,11 @@ export const WorkItem: React.FC<Props> = (props) => {
       </WorkItemHeader>
       <WorkingProcess>
         <GoGear />
-        {props.workItem.workingProcess}
+        {props.workItem.workingProcess.join(' / ')}
       </WorkingProcess>
       <span>
         <GoFileCode />
-        {props.workItem.technology}
+        {props.workItem.technology.join(' / ')}
       </span>
       <div>
         {props.workItem.description}
