@@ -7,7 +7,7 @@ const WorksWrapper = styled.div`
 `;
 
 const WorkItemWrapper = styled(WorkItem)`
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 `;
 
 export const Works = () => {
