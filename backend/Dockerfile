@@ -5,7 +5,7 @@ ARG RUBY_VERSION=3.2.3
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
-# WORKDIR /rails
+WORKDIR /rails
 
 # Set production environment
 ENV RAILS_ENV="production" \
@@ -28,7 +28,7 @@ RUN bundle install && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
-# COPY . .
+COPY . .
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/

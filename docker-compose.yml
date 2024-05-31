@@ -51,7 +51,7 @@ services:
     tty: true
     volumes:
       - ./frontend/app:/usr/src/app/frontend/app
-    command: sh -c "yarn start"
+    command: sh -c "yarn install && yarn start"
     ports:
       - "3001:3000"
     environment:
