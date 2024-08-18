@@ -15,7 +15,7 @@ export const Works = () => {
 
   return (
     <WorksWrapper>
-      <h1>Works</h1>
+      <h1>WORKS</h1>
       <>
         {
           workItems.map((work, i) => {
