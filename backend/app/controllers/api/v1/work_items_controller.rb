@@ -35,6 +35,7 @@ module Api
             technology: ['React', 'TypeScript'],
           },
         ].to_json
+
         render json: work_items
       end
     end
