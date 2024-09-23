@@ -46,15 +46,15 @@ const Discription = styled.div`
 `;
 
 interface Props {
-  readonly workItem: WorkItemData;
-  readonly className?: string;
+  workItem: WorkItemData;
+  className?: string;
 }
 
 export const WorkItem: React.FC<Props> = (props) => {
   return (
     <WorkItemBlock className={props.className}>
       <ImageBlock>
-        <img src={image01}></img>
+        <img src={image01} alt="site" />
       </ImageBlock>
       <div>
         <WorkItemHeader>
