@@ -1,28 +1,30 @@
 import { WorkItem } from "./components/WorkItem";
 import { useHooks } from "./hooks";
 import { styled } from "styled-components"
+import { ContentTitle } from "components/ContentTitle"
 
 const WorksWrapper = styled.div`
-  padding: 16px 128px;
+  padding: 0 128px;
+`;
+const WorkList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
 
-const WorkItemWrapper = styled(WorkItem)`
-  margin-bottom: 24px;
-`;
-
-export const Works = () => {
+export const Works: React.FC = () => {
   const { workItems } = useHooks();
 
   return (
     <WorksWrapper>
-      <h1>WORKS</h1>
-      <>
+      <ContentTitle title="WORKS" />
+      <WorkList>
         {
           workItems.map((work, i) => {
-            return <WorkItemWrapper key={`work-${i}`} workItem={work} />
+            return <WorkItem key={`work-${i}`} workItem={work} />
           })
         }
-      </>
+      </WorkList>
     </WorksWrapper>
   );
 };

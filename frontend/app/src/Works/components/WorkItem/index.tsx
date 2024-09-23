@@ -46,8 +46,8 @@ const Discription = styled.div`
 `;
 
 interface Props {
-  readonly workItem: WorkItemData;
-  readonly className?: string;
+  workItem: WorkItemData;
+  className?: string;
 }
 
 export const WorkItem: React.FC<Props> = (props) => {
