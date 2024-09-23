@@ -54,7 +54,7 @@ export const WorkItem: React.FC<Props> = (props) => {
   return (
     <WorkItemBlock className={props.className}>
       <ImageBlock>
-        <img src={image01}></img>
+        <img src={image01} alt="site" />
       </ImageBlock>
       <div>
         <WorkItemHeader>

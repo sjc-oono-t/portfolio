@@ -45,7 +45,7 @@ export const About: React.FC = () => {
 
       <Content>
         <ProfileImageContent>
-          <img src={profileImage} />
+          <img src={profileImage} alt="mochi" />
         </ProfileImageContent>
         <ProfileSentenceContent>
           <Name>もち / Mochi</Name>
