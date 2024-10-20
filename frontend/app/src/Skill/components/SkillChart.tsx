@@ -1,5 +1,6 @@
 import { ResponsiveRadar } from '@nivo/radar'
 import { styled } from "styled-components";
+import { Skill } from "../interface";
 
 const Title = styled.div`
   text-align: center;
@@ -8,44 +9,28 @@ const Chart = styled.div`
   height: 320px;
 `;
 
-export const SkillChart: React.FC = (props) => {
-  const data = [
-    {
-      chardonay: 48,
-      taste: 'React'
-    },
-    {
-      chardonay: 54,
-      taste: 'HTML/CSS'
-    },
-    {
-      chardonay: 46,
-      taste: 'Vue'
-    },
-    {
-      chardonay: 102,
-      taste: 'TypeScript'
-    },
-    {
-      chardonay: 29,
-      taste: 'JavaScript'
-    }
-  ]
+interface Props {
+  title: string;
+  chartData: Skill[];
+}
+
+export const SkillChart: React.FC<Props> = (props) => {
+  const data: Record<string, unknown>[] = props.chartData.map((chartDatum) => { return {...chartDatum}});
 
   return (
     <div style={{width: '320px'}}>
-      <Title>frontend</Title>
+      <Title>{props.title}</Title>
       <Chart>
         <ResponsiveRadar
           animate
           curve="catmullRomClosed"
           data={data}
           gridShape="linear"
-          indexBy="taste"
+          indexBy="name"
           // ツールチップOFF
           isInteractive={false}
           keys={[
-            'chardonay',
+            'value',
           ]}
           margin={{
             bottom: 0,

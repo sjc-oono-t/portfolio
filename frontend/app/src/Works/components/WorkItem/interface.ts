@@ -1,7 +1,7 @@
 export interface WorkItemData {
-  readonly title: string;
-  readonly url?: string;
-  readonly description: string;
-  readonly workingProcess: string[];
-  readonly technology: string[];
+  title: string;
+  url?: string;
+  description: string;
+  workingProcess: string[];
+  technology: string[];
 }
