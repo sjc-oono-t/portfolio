@@ -1,24 +1,38 @@
-import { WorkItemData } from 'Works/components/WorkItem/interface';
+import { Skill } from './interface';
 import { useEffect, useState } from 'react';
 import { getApiData } from 'infra/api';
 
+interface Skills {
+  frontend: Skill[],
+  backend: Skill[],
+  tool: Skill[],
+  other: string[],
+}
+
 interface ReturnHooks {
-  workItems: WorkItemData[];
+  skills: Skills;
+}
+
+const initialSkills = {
+  frontend: [],
+  backend: [],
+  tool: [],
+  other: [],
 }
 
 export const useHooks = (): ReturnHooks => {
-  const [workItems, setWorkItems] = useState<WorkItemData[]>([]);
+  const [skills, setSkills] = useState<Skills>(initialSkills);
 
-  // const fetchWorkItems = async () => {
-  //   // const result = await getApiData('api/v1/work_items');
-  //   // setWorkItems(result.data);
-  // }
+  const fetchSkills = async () => {
+    const result = await getApiData('api/v1/skills');
+    setSkills(result.data);
+  }
 
-  // useEffect(() => {
-  //   fetchWorkItems();
-  // }, [])
+  useEffect(() => {
+    fetchSkills();
+  }, [])
 
   return {
-    workItems,
+    skills,
   };
 }
